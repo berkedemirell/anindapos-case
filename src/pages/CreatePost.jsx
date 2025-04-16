@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 const CreatePost = () => {
   const { user, posts } = useContext(UserContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [postInputs, setPostInputs] = useState({
-    id: Number(posts.length) + 1,
+    id: String(Number(posts.length) + 1),
     title: "",
     content: "",
     writer: user.username,
@@ -20,14 +20,12 @@ const CreatePost = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     await axios.post("http://localhost:3000/posts", postInputs);
-    navigate('/')
+    navigate("/");
   };
-
-  console.log(postInputs);
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-start justify-center h-screen">
       <div className="flex flex-col items-center justify-center w-1/2 gap-2 mt-12">
         <div className="flex flex-col w-1/2">
           <label htmlFor="title" className="capitalize font-bold">
@@ -55,7 +53,7 @@ const CreatePost = () => {
         </div>
         <button
           onClick={handleSubmit}
-          className="bg-slate-950 w-1/2 rounded-md text-slate-50 p-1"
+          className="bg-slate-950 w-1/2 rounded-md text-slate-50 p-2"
         >
           Gönder
         </button>

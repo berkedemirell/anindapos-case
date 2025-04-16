@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import SinglePost from './pages/SinglePost'
 import CreatePost from './pages/CreatePost'
+import EditPage from './pages/EditPage'
 
 function App() {
 
@@ -44,6 +45,10 @@ function App() {
         {
           path:"/gönderi",
           element: <CreatePost/>
+        },
+        {
+          path: "/editpost/:id",
+          element: <EditPage/>
         }
 
       ]

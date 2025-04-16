@@ -47,7 +47,7 @@ const Login = () => {
     
   };
   return (
-    <div className="flex flex-col items-center justify-center mt-12">
+    <div className="flex flex-col items-center justify-start mt-12 h-screen">
       <div>
         <h1 className="text-3xl mb-2 underline">Giriş Yap</h1>
       </div>

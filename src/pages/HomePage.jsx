@@ -8,13 +8,13 @@ import axios from "axios";
 const HomePage = () => {
   const { posts, user } = useContext(UserContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleDelete = async (e) => {
-    e.preventDefault()
-    await axios.delete(`http://localhost:3000/posts/${e.target.id}`)
-    navigate('/')
-  };    
+    e.preventDefault();
+    await axios.delete(`http://localhost:3000/posts/${e.target.id}`);
+    navigate("/");
+  };
 
   return (
     <div className="mt-4">
@@ -37,23 +37,32 @@ const HomePage = () => {
               <div>
                 <p>{post.content.slice(0, 25)}...</p>
               </div>
-              <Link
-                to={`/gönderi/${post.id}`}
-                id={post.id}
-                className="text-red-950"
-              >
-                <FaArrowRightLong />
-              </Link>
-              {user.username === post.writer && (
-                <button className="text-green-950 text-sm underline">
-                  Update
-                </button>
-              )}
-              {user.username === post.writer && (
-                <Link id={post.id} className="text-red-950 font-bold" onClick={handleDelete}>
-                  X
+              <div className="flex flex-row items-center justify-end gap-4 ml-auto">
+                {user.username === post.writer || user.username === 'admin' && (
+                  <Link
+                    to={`/editpost/${post.id}`}
+                    className="text-green-950 text-sm underline font-bold"
+                  >
+                    Update
+                  </Link>
+                )}
+                {user.username === post.writer || user.username === "admin" && (
+                  <Link
+                    id={post.id}
+                    className="text-red-950 font-bold text-sm underline"
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </Link>
+                )}
+                <Link
+                  to={`/gönderi/${post.id}`}
+                  id={post.id}
+                  className="text-red-950"
+                >
+                  <FaArrowRightLong />
                 </Link>
-              )}
+              </div>
             </div>
           );
         })}

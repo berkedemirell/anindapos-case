@@ -19,7 +19,7 @@ const SinglePost = () => {
         fetchPost()
     }, [setPost, path])
   return (
-    <div>
+    <div className='min-h-screen'>
         <div className='pl-40 pr-40 p-12'>
             <div>
                 <p className='text-3xl'>{post.title}</p>
